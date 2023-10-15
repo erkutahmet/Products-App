@@ -61,8 +61,47 @@ extension HomePage: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         cell.cellBackground.layer.cornerRadius = 10
         
+        cell.selectionStyle = .none
+        
+        cell.cellProtocol = self
+        cell.indexPath = indexPath
+        
         return cell
     }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let product = productsList[indexPath.row]
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, bool in
+            print("\(product.name!) deleted.")
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { contextualAction, view, bool in
+            print("\(product.name!) edited.")
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = productsList[indexPath.row]
+        
+        performSegue(withIdentifier: "toDetail", sender: product)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail" {
+            if let product = sender as? Products {
+                let toVC = segue.destination as! DetailPage
+                toVC.product = product
+            }
+        }
+    }
+}
+
+extension HomePage: CellProtocol {
+    func addToBasketClicked(indexPath: IndexPath) {
+        let product = productsList[indexPath.row]
+        print("\(product.name!) added to basket.")
+    }
 }

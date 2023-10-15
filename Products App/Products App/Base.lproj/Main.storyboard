@@ -101,6 +101,7 @@
                     <navigationItem key="navigationItem" title="Products" id="hyo-Iq-Vem"/>
                     <connections>
                         <outlet property="productTableView" destination="9ZE-Fo-cJB" id="rYP-th-tKE"/>
+                        <segue destination="we9-qZ-ihP" kind="show" identifier="toDetail" id="Avg-ec-jgy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -114,9 +115,42 @@
                     <view key="view" contentMode="scaleToFill" id="OYy-Kj-91E">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="XFs-rd-jrO">
+                                <rect key="frame" x="68.666666666666686" y="187" width="256" height="256"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqS-js-ZfA">
+                                <rect key="frame" x="32" y="751" width="329" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add To Basket"/>
+                                <connections>
+                                    <action selector="addToBasketButton:" destination="we9-qZ-ihP" eventType="touchUpInside" id="7hj-oo-Xoc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35999 ₺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ns8-Oh-yhV">
+                                <rect key="frame" x="137.66666666666666" y="475" width="118" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="DqB-yg-U9F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DqB-yg-U9F" firstAttribute="bottom" secondItem="mqS-js-ZfA" secondAttribute="bottom" constant="32" id="66y-10-dNK"/>
+                            <constraint firstItem="ns8-Oh-yhV" firstAttribute="top" secondItem="XFs-rd-jrO" secondAttribute="bottom" constant="32" id="LKa-kb-kHS"/>
+                            <constraint firstItem="DqB-yg-U9F" firstAttribute="trailing" secondItem="mqS-js-ZfA" secondAttribute="trailing" constant="32" id="Lhw-w4-SvM"/>
+                            <constraint firstItem="XFs-rd-jrO" firstAttribute="centerX" secondItem="OYy-Kj-91E" secondAttribute="centerX" id="RhS-dH-nDF"/>
+                            <constraint firstItem="XFs-rd-jrO" firstAttribute="top" secondItem="DqB-yg-U9F" secondAttribute="top" constant="32" id="bxI-dR-qoV"/>
+                            <constraint firstItem="ns8-Oh-yhV" firstAttribute="centerX" secondItem="OYy-Kj-91E" secondAttribute="centerX" id="q0p-fU-H57"/>
+                            <constraint firstItem="mqS-js-ZfA" firstAttribute="leading" secondItem="DqB-yg-U9F" secondAttribute="leading" constant="32" id="vVC-IU-Sz2"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2WR-El-jKU"/>
+                    <connections>
+                        <outlet property="productImageView" destination="XFs-rd-jrO" id="gDL-gL-ITu"/>
+                        <outlet property="productPriceLabel" destination="ns8-Oh-yhV" id="sTY-oy-Ucc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZQ-7J-7iU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="phone" width="256" height="256"/>
         <image name="telefon" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

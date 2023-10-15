@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol CellProtocol {
+    func addToBasketClicked(indexPath: IndexPath)
+}
+
 class ProductsCell: UITableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
+    
+    var cellProtocol: CellProtocol?
+    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +30,6 @@ class ProductsCell: UITableViewCell {
     }
     
     @IBAction func addToBasketButton(_ sender: Any) {
+        cellProtocol?.addToBasketClicked(indexPath: indexPath!)
     }
 }
